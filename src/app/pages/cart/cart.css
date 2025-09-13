@@ -1,0 +1,110 @@
+/* Contenedor general */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+/* Título */
+.titulo {
+  display: flex;
+  align-items: center;         
+  gap: 10px;                   
+  font-weight: bold;
+  font-size: 1.6rem;           
+  color: #023047;              
+  margin-bottom: 2rem;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #1976d2; 
+}
+
+
+/* Tarjeta de producto */
+.producto {
+    margin-bottom: 1rem;
+    padding: 15px;
+    
+}
+
+/* Contenido del producto */
+.producto-content {
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+   
+}
+
+/* Imagen */
+.producto-img {
+    width: 100px;
+    height: auto;
+    border-radius: 6px;
+    object-fit: contain;
+
+}
+
+/* Info del producto */
+.producto-info {
+    padding: 15px;   
+    flex: 1;
+  
+}
+
+.producto-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Acciones */
+.producto-acciones {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+/* Tarjeta del total */
+.total-card {
+  padding: 15px;
+  margin-top: 2rem;
+  text-align: right;
+}
+
+
+/* Carrito vacío */
+.mensaje-vacio {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+}
+
+/* CSS */
+.btn-eliminar {
+  background-color: #c62828 !important; 
+  color: white !important;
+  font-size:  16px;
+  padding:  10px 24px;
+  min-width: 120px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.btn-eliminar:hover {
+  background-color: #b71c1c !important; 
+}
+
+/* btn finalizar compra */
+.btn-finalizar-compra {
+  background-color: #0077b6 !important; 
+  color: white !important;
+  font-size:  16px;
+  padding:  10px 24px;
+  min-width: 120px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.btn-finalizar-compra:hover {
+  background-color: #023e8a !important; 
+}

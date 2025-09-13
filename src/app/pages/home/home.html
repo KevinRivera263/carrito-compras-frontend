@@ -1,0 +1,56 @@
+<h1 class="titulo">Productos</h1>
+
+
+<mat-progress-bar *ngIf="loadingP" mode="indeterminate" color="accent"></mat-progress-bar>
+
+
+<div *ngIf="loadingP" class="loading">
+  <mat-progress-spinner mode="indeterminate" diameter="56"></mat-progress-spinner>
+  <p>Cargando productos…</p>
+</div>
+
+
+<div *ngIf="!loadingP && errorMsg" class="loading error">
+  <p>{{ errorMsg }}</p>
+  <button mat-stroked-button color="primary" (click)="ngOnInit()">Reintentar</button>
+</div>
+
+
+<div *ngIf="!loadingP && !errorMsg && (!productos || !productos.length)" class="loading">
+  <p>No hay productos para mostrar.</p>
+</div>
+
+
+<div *ngIf="!loadingP && !errorMsg && productos?.length" class="productos-grid">
+  <mat-card *ngFor="let p of productos" class="producto-card">
+    <img mat-card-image [src]="p.imagen_url" alt="{{ p.nombre }}">
+    <mat-card-content>
+      <h3>{{ ArreglarTexto(p.nombre) }}</h3>
+      <p><strong>Precio:</strong> ${{ p.precio }}</p>
+      <p><strong>Stock:</strong> {{ p.stock }}</p>
+    </mat-card-content>
+
+    <mat-card-actions class="acciones">
+      <div class="cantidad">
+        <button mat-icon-button class="step" (click)="decrementar(p)" aria-label="Restar">
+          <mat-icon>remove</mat-icon>
+        </button>
+
+        <mat-form-field appearance="outline" class="cantidad-field">
+          <input matInput type="number" [(ngModel)]="p.cantidad" min="1" [max]="p.stock">
+        </mat-form-field>
+
+        <button mat-icon-button class="step" (click)="incrementar(p)" aria-label="Sumar">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <button mat-raised-button color="primary"
+              class="btn-agregar"
+              (click)="agregarAlCarrito(p.id, p.cantidad)"
+              [disabled]="p.stock === 0">
+        Agregar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

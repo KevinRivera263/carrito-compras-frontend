@@ -1,0 +1,83 @@
+/* Base del toolbar */
+mat-toolbar.navbar {
+  background: linear-gradient(90deg, #1976d2, #1c416b);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0,0,0,.2);
+  position: sticky;    
+  top: 0;
+  z-index: 1000;
+}
+
+/* Layout */
+.navbar {
+  display: flex;
+  /* align-items: center; */
+  padding: 0 20 px;
+}
+
+.spacer { flex: 0 0 24px; } 
+
+.navbar-logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: .3px;
+}
+
+/* Links */
+.nav-links {
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links a[mat-button] {
+  color: #fff;
+  opacity: .95;
+  text-transform: none;
+  font-weight: 700;
+  padding: 0 12px;
+  border-radius: 8px;
+  position: relative;
+  transition: background-color .2s ease, opacity .2s ease;
+}
+
+.nav-links a[mat-button]:hover {
+  background: rgba(255,255,255,.12);
+  opacity: 1;
+}
+
+/* Subrayado del activo con animación */
+.nav-links a[mat-button]::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -6px;
+  height: 3px;
+  background: #ffeb3b;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s ease;
+}
+.nav-links a.active::after { transform: scaleX(1); }
+
+
+.cart-link .mat-badge-content {
+  box-shadow: 0 0 0 2px #1c416b;   
+  font-weight: 800;
+}
+.cart-link.mat-badge-above .mat-badge-content {
+  top: -8px;                     
+}
+.cart-link.mat-badge-after .mat-badge-content {
+  right: -8px;                  
+}
+
+/* Responsive */
+@media (max-width: 680px) {
+  .navbar { padding: 0 12px; }
+  .navbar-logo { font-size: 1rem; }
+  .nav-links { gap: 6px; }
+  .nav-links a[mat-button] { padding: 0 8px; }
+}

@@ -1,0 +1,40 @@
+<div class="container">
+  <h2 class="titulo">Carrito de Compras</h2>
+
+  <div *ngIf="carrito.length > 0; else vacio">
+    <mat-card class="producto" *ngFor="let item of carrito">
+      <mat-card-content class="producto-content">
+        <img [src]="item.imagen" alt="{{ item.nombre }}" class="producto-img">
+
+        <div class="producto-info">
+          <h3>{{ ArreglarTexto(item.nombre) }}</h3>
+          <p><strong>Precio:</strong> ${{ item.precio }}</p>
+          <p><strong>Cantidad:</strong> {{ item.cantidad }}</p>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="producto-acciones">
+        <button mat-raised-button class="btn-eliminar" (click)="eliminarProducto(item.id, item.nombre)">
+          ❌ Quitar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="total-card">
+      <mat-card-content>
+        <h3>Total: ${{ total }}</h3>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button  class="btn-finalizar-compra"
+                    (click)="finalizarCompra()"
+            [disabled]="finalizar || !carrito.length">
+      {{ finalizar ? 'Procesando…' : 'Finalizar Compra' }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <ng-template #vacio>
+    <p class="mensaje-vacio">Tu carrito está vacío.</p>
+  </ng-template>
+</div>
