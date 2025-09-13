@@ -5,7 +5,7 @@
   align-items: center;
   gap: 10px;
   font-weight: bold;
-  font-size: 1.8rem;
+  font-size: clamp(1.25rem, 2.5vw + .6rem, 1.8rem);
   color: #023047;
   margin: 24px 0 16px;
   padding-bottom: 8px;
@@ -60,6 +60,7 @@ mat-card-actions.acciones {
   padding: 10px 8px 0;
   width: 100%;
   box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 
@@ -123,3 +124,70 @@ input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin
 }
 
 .loading.error { color: #c62828; }
+
+/* para moviles */
+
+@media (max-width: 480px) {
+  /* Grid más compacto en móvil */
+  .productos-grid {
+    gap: 16px;
+    margin: 12px;
+  }
+
+  
+  mat-card {
+    padding: 12px;
+    min-height: auto;       
+  }
+
+  mat-card img {
+    height: 150px;
+  }
+
+  mat-card-content h3 {
+    font-size: 1.1rem;
+    margin: 6px 0 10px;
+    line-height: 1.2;
+  }
+  mat-card-content p {
+    margin: 2px 0;
+    font-size: .95rem;
+  }
+
+ 
+  mat-card-actions.acciones {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding-top: 8px;
+  }
+
+
+  .cantidad {
+    justify-content: center;
+  }
+
+
+  .btn-agregar {
+    width: 100%;
+    height: 44px;
+  }
+
+
+  .step.mat-mdc-icon-button.mat-mdc-button-base {
+    width: 36px;
+    height: 36px;
+  }
+  .cantidad-field {
+    width: 88px;                     
+  }
+  .cantidad-field .mat-mdc-text-field-wrapper {
+    height: 36px;
+  }
+}
+
+
+@media (max-width: 360px) {
+  .cantidad-field { width: 80px; }
+}
+
