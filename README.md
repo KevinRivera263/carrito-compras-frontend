@@ -1,59 +1,95 @@
-# CarritoComprasFrontend
+## Carrito Compras – Frontend (Angular 20)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
+Este repositorio contiene el  **frontend** del proyecto _Carrito Compras_ desarrollado con **Angular 20**, **Angular Material** y desplegado en **GitHub Pages**.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🔗 Producción (GitHub Pages)
+**URL:** `https://kevinrivera263.github.io/carrito-compras-frontend/`
 
-```bash
-ng serve
+> Nota: el backend corre en Render 
+
+---
+
+## Stack
+- **Angular 20** (standalone components, routing sin NgModule)
+- **Angular Material** (toolbar, botones, inputs, snackbars, badge, spinner)
+- **TypeScript**
+- **GitHub Pages** para el despliegue estático
+- **Render** para el backend
+
+---
+
+## 📂 Estructura del proyecto
+
+```
+carrito-compras-frontend/
+├─ docs/                         
+│  ├─ index.html                 
+│  ├─ 404.html                   
+│  └─ assets/ ...                
+├─ src/
+│  ├─ app/
+│  │  ├─ pages/
+│  │  │  ├─ home/
+│  │  │  │  ├─ home.html         # listado de productos
+│  │  │  │  ├─ home.ts           # lógica de Home (carga, cantidad, agregar)
+│  │  │  │  └─ home.css          # estilos (responsive con media queries)
+│  │  │  └─ cart/
+│  │  │     ├─ cart.html         # vista del carrito
+│  │  │     ├─ cart.ts           # lógica del carrito (eliminar, total, finalizar)
+│  │  │     └─ cart.css          # estilos
+│  │  ├─ services/
+│  │  │  └─ api.ts               # servicio HTTP al backend (productos, carrito)
+│  │  ├─ app.routes.ts           # rutas 
+│  │  ├─ app.config.ts           
+│  │  ├─ app.html                
+│  │  └─ app.ts                  # componente raíz standalone
+│  ├─ styles.css                 
+│  ├─ main.ts                   
+│  └─ index.html                 
+├─ angular.json                 
+├─ package.json                 
+└─ README.md
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Endpoints del backend (Render)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Base:** `https://carrito-compras-backend.onrender.com`
 
-```bash
-ng generate component component-name
-```
+- `GET /productos` → Lista de productos
+- `GET /carrito` → Lista de ítems en carrito
+- `POST /carrito` → Agregar `{ producto_id | nombre, cantidad }`
+- `DELETE /carrito/:id` → Eliminar ítem por id
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+> En el servicio `api.ts` está centralizada la base URL y helpers. También expone un **BehaviorSubject** para el **contador del carrito** (badge en el toolbar).
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## Funcionalidades y decoradore que se incorporaron
+- **Listado de productos** con imagen, precio y stock
+- **Agregar al carrito** con selector de **cantidad** (botones `–` / `+` y input)
+- **Carrito** con resumen, **eliminar** ítems, **total** y **finalizar compra**
+- **Snackbars** (Material) para confirmaciones/errores
+- **Loading states**: progress bar + spinner mientras carga
+- **Badge** de cantidad en el navbar (contador reactivo)
+- **Responsive**: layout optimizado para desktop y móvil (controles no se solapan)
+- **SPA en Pages**: `404.html` incluido para que rutas funcionen al refrescar
 
-To build the project run:
+---
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## ▶️ Desarrollo local
 
 ```bash
-ng e2e
+# instalar dependencias
+npm install
+
+# levantar
+ng serve -o
+# http://localhost:4200
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+> El servicio `ApiService` ya apunta al backend de Render vía HTTPS.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
